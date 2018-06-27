@@ -8,11 +8,11 @@ namespace Phoenix.Pages
 {
     public class AboutModel : PageModel
     {
-        public string Message { get; set; }
+        public string Link => "http://jxe.com/about/";
 
         public void OnGet()
         {
-            Message = "Your application description page.";
+            
         }
     }
 }
