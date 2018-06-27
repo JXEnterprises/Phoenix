@@ -52,7 +52,10 @@ namespace Phoenix
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
-            app.UseMvc();
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute("default", "{/Index}");
+            });
         }
     }
 }
