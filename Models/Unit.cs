@@ -1,23 +1,54 @@
 using System;
 
-namespace Phoenix.Models
+namespace Phoenix
 {
     /// <summary>
-    /// Represents an appraisal of, and possible offer to purchase, 1 or more Units.
+    /// Represents a truck, referred to as a Unit within Fusion.
     /// </summary>
-    public class Deal
+    public class Unit
     {
         /// <summary>
-        /// Gets or sets the Deal's unique identifier.
+        /// Gets or sets the unique identifier.
         /// </summary>
         public int ID { get; set; }
         /// <summary>
-        /// Gets the number of Units in the Deal.
+        /// Gets or sets the current owner's name.
         /// </summary>
-        public int UnitCount { get; private set; }
+        public string CustomerName { get; set; }
+        /// <summary>
+        ///  Gets or sets the current owner's address.
+        /// </summary>
+        public string CustomerAddress { get; set; }
+        /// <summary>
+        /// Gets or sets the appraiser's name.
+        /// </summary>
+        public string AppraiserName { get; set; }
 
-        // control branch? 
+        //Branch - lookup
 
+        /// <summary>
+        /// Gets or sets the title or model year.
+        /// </summary>
+        public int ModelYear { get; set; }
+        
+        //Make - lookup
+
+        //Model - lookup
+        /// <summary>
+        /// Gets or sets the Vehicle Identification Number.
+        /// </summary>
+        public string VIN { get; set; }
+
+        //Engine Make - string
+
+        //Horsepower
+
+        //Engine Liters
+
+        //...
+
+        /// TODO: Handle picture links. Should they be some kind of Attachment object?
+        
         #region Standard Audit Fields
         /// <summary>
         /// Gets or sets the user who added the record.
