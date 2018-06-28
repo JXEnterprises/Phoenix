@@ -12,16 +12,19 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Phoenix
 {
+    /// <summary> Represents the site startup configuration. </summary>
     public class Startup
     {
+        /// <summary> The constructor. </summary>
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
+        /// <summary> Gets the site configuration information. </summary>
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        /// <summary> This method gets called by the runtime. Use this method to add services to the container. </summary>
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<CookiePolicyOptions>(options =>
@@ -35,7 +38,7 @@ namespace Phoenix
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// <summary> This method gets called by the runtime. Use this method to configure the HTTP request pipeline. </summary>
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
