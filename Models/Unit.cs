@@ -44,6 +44,7 @@ namespace Phoenix.Models
         /// <summary> Gets or sets the user who added the record. </summary>
         public int AddUserID { get; set; }
 
+        // TODO: get rid of these annotations in favor of the Fluent API (see Asana task "EF - Standard Audit Fields")
         /// <summary> Gets or sets the UTC date the record was added. </summary>
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public DateTime AddDate { get; set; }
