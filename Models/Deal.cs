@@ -10,7 +10,7 @@ namespace Phoenix.Models
         public int ID { get; set; }
 
         /// <summary> Gets the number of Units in the Deal. </summary>
-        public int UnitCount { get; private set; }
+        public int UnitCount => (Units != null ? Units.Count : 0);
 
         // control branch? 
 
