@@ -60,10 +60,11 @@ namespace Phoenix
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute("default", "{/Index}");
-            });
+            app.UseMvc();
+            //// app.UseMvc(routes =>
+            //// {
+            ////     routes.MapRoute("default", "{Units/Index}");
+            //// });
         }
     }
 }

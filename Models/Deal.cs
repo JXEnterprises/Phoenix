@@ -12,7 +12,7 @@ namespace Phoenix.Models
         /// <summary> Gets the number of Units in the Deal. </summary>
         public int UnitCount => (Units != null ? Units.Count : 0);
 
-        // control branch? 
+        // ? control branch? 
 
         /// <summary> A navigation property representing the Units in this Deal </summary>
         public ICollection<Unit> Units {get; set; }

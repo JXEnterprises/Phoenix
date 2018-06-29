@@ -10,18 +10,23 @@ using Phoenix.Models;
 
 namespace Phoenix.Pages.Units
 {
+    /// <summary> Represents the "Edit Unit" page model. </summary>
     public class EditModel : PageModel
     {
         private readonly Phoenix.Models.DealContext _context;
 
+        /// <summary> The constructor. </summary>
+        /// <param name="context"> The DealContext. See <see cref="DealContext"/>. </param>
         public EditModel(Phoenix.Models.DealContext context)
         {
             _context = context;
         }
 
+        /// <summary> Gets or sets the Unit to be edited. </summary>
         [BindProperty]
         public Unit Unit { get; set; }
 
+        /// <summary> Fires asynchronously when the page is accessed via the GET HTTP verb. </summary>
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
@@ -38,6 +43,7 @@ namespace Phoenix.Pages.Units
             return Page();
         }
 
+        /// <summary> Fires asynchronously when the page is accessed via the POST HTTP verb. </summary>
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)

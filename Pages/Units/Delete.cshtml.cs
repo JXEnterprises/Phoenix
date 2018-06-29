@@ -9,18 +9,24 @@ using Phoenix.Models;
 
 namespace Phoenix.Pages.Units
 {
+    /// <summary> Represents the "Delete Unit" page model. </summary>
     public class DeleteModel : PageModel
     {
         private readonly Phoenix.Models.DealContext _context;
 
+        /// <summary> The constructor. </summary>
+        /// <param name="context"> The DealContext. See <see cref="DealContext"/>. </param>
         public DeleteModel(Phoenix.Models.DealContext context)
         {
             _context = context;
         }
 
+        /// <summary> Gets or sets the Unit to be deleted. </summary>
+        /// <returns></returns>
         [BindProperty]
         public Unit Unit { get; set; }
 
+        /// <summary> Fires asynchronously when the page is accessed via the GET HTTP verb. </summary>
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)
@@ -37,6 +43,7 @@ namespace Phoenix.Pages.Units
             return Page();
         }
 
+        /// <summary> Fires asynchronously when the page is accessed via the POST HTTP verb. </summary>
         public async Task<IActionResult> OnPostAsync(int? id)
         {
             if (id == null)
