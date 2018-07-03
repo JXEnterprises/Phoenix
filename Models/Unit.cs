@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Phoenix.Models
@@ -36,9 +37,10 @@ namespace Phoenix.Models
 
         //Engine Liters
 
-        /// <summary> Gets or Sets a parent Deal of this Unit. </summary>
-        /// <remarks> One Unit can have multiple Deals over its lifetime. </remarks>
+        /// <summary> Gets or Sets the parent Deal of this Unit. </summary>
         public Deal Deal { get; set; }
+        // <remarks> One Unit can have multiple Deals over its lifetime. </remarks>
+        //public ICollection<Deal> Deals { get; set; }
 
         #region Standard Audit Fields
         /// <summary> Gets or sets the user who added the record. </summary>

@@ -1,4 +1,5 @@
-﻿using Phoenix.Models;                               // for our Contexts
+﻿using Phoenix.Data;
+using Phoenix.Models;                               // for our Contexts
 
 using System;
 using System.Collections.Generic;
@@ -28,7 +29,8 @@ namespace Phoenix
                 try
                 {
                     var context = services.GetRequiredService<DealContext>();
-                    context.Database.EnsureCreated();
+                    //using Phoenix.Data
+                    DbInitializer.InitializeContext(context);
                 }
                 catch (Exception ex)
                 {
