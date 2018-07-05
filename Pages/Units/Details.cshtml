@@ -1,0 +1,85 @@
+@page
+@model Phoenix.Pages.Units.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Unit</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Unit.CustomerName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Unit.CustomerName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Unit.CustomerAddress)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Unit.CustomerAddress)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Unit.AppraiserName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Unit.AppraiserName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Unit.ModelYear)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Unit.ModelYear)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Unit.VIN)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Unit.VIN)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Unit.AddUserID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Unit.AddUserID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Unit.AddDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Unit.AddDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Unit.AddDateTimeZone)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Unit.AddDateTimeZone)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Unit.UpdateUserID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Unit.UpdateUserID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Unit.UpdateDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Unit.UpdateDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Unit.LastUpdateTimeZone)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Unit.LastUpdateTimeZone)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Unit.ID">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

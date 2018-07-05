@@ -9,19 +9,24 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
+using Phoenix.Models;
 
 namespace Phoenix
 {
+    /// <summary> Represents the site startup configuration. </summary>
     public class Startup
     {
+        /// <summary> The constructor. </summary>
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
+        /// <summary> Gets the site configuration information. </summary>
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        /// <summary> This method gets called by the runtime. Use this method to add services to the container. </summary>
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<CookiePolicyOptions>(options =>
@@ -33,9 +38,12 @@ namespace Phoenix
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.AddDbContext<DealContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("DealContext")));
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// <summary> This method gets called by the runtime. Use this method to configure the HTTP request pipeline. </summary>
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
@@ -52,10 +60,13 @@ namespace Phoenix
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute("default", "{/Index}");
-            });
+             app.UseMvc(); 
+            /* //// routes =>
+            // {
+            //     routes.MapRoute(
+            //         name: "default",
+            //         template: "{controller=Home}/{action=Index}/{id?}");
+            // }); */
         }
     }
 }
