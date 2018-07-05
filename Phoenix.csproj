@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
+    <RuntimeIdentifier>win10-x64</RuntimeIdentifier>
     <!-- Optional performance setting - enables tiered JIT compilation-->
     <TieredCompilation>true</TieredCompilation>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
