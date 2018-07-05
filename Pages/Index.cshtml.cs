@@ -7,8 +7,10 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Phoenix.Pages
 {
+    /// <summary> Represents the root Index page </summary>
     public class IndexModel : PageModel
     {
+        /// <summary> Fires when the page is accessed via the GET HTTP verb. </summary>
         public void OnGet()
         {
 
