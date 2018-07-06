@@ -18,7 +18,7 @@ To get started with building this system from source on Windows, follow these st
 4. Install a [SQL Server](https://go.microsoft.com/fwlink/?linkid=853016) instance, and ensure it uses Windows (integrated) authentication instead of SQL Authentication. Keep the default name so you can connect to it as `(local)`.
 5. Choose a directory where you will work. The author keeps his source code in `C:\src` and Phoenix is in `C:\src\dotnet\Phoenix`.
 6. Open PowerShell and navigate to your source directory.
-7. Clone the repository: `git clone https://github.com/ericfoxx/Phoenix.git`.
+7. Clone the repository: `git clone https://github.com/JXEnterprises/Phoenix.git`.
 8. Change directory into the cloned repository: `cd Phoenix`.
 9. Restore packages: `dotnet restore`.
 10. Open the project in Visual Studio Code: `code .` or `code-insiders .` depending on what version you chose to install.
