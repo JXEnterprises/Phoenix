@@ -1,6 +1,4 @@
-# Phoenix 
-
-[![GitHub (pre-)release](https://img.shields.io/github/release/qubyte/rubidium/all.svg)]
+# Phoenix
 
 The used truck deal system for appraisals, offers, and more!
 
