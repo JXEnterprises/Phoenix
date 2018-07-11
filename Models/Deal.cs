@@ -13,13 +13,14 @@ namespace Phoenix.Models
         [Key]
         private int _id;
 
-        /// <summary> Gets the number of Units in the Deal. </summary>
-        public int UnitCount => (Units != null ? Units.Count : 0);
+        /// <summary> Gets or sets the control branch. </summary>
+        /// <example> Madison </example>
+        public string ControlBranch { get; set; }
+
+        /// <summary> Gets or sets the collection navigation property for mapping to Deals. </summary>
+        public IList<DealUnit> DealUnits { get; set; }
 
         // ? control branch? 
-
-        /// <summary> A navigation property representing the Units in this Deal </summary>
-        public ICollection<Unit> Units {get; set; }
 
         #region Standard Audit Fields
         /// <summary> Gets or sets the user who added the record. </summary>
@@ -46,6 +47,27 @@ namespace Phoenix.Models
         [Display(Name="Time Zone")]
         public decimal LastUpdateTimeZone { get; set; }
         #endregion
+
+        /// <summary>
+        /// Updates Audit fields for the record.
+        /// </summary>
+        /// <param name="userId"> The user. </param>
+        public void UpdateAuditFields(int userId)
+        {
+            //! WARNING: Possible cross-platform idiosyncrasies!
+            var timeZone = TimeZoneInfo.Local;
+            var offset = timeZone.GetUtcOffset(DateTime.Now);
+            decimal offsetHours = offset.Hours + (offset.Minutes/60);
+            if (AddUserID == 0)
+            {
+                AddUserID = userId;
+                AddDate = DateTime.UtcNow;
+                AddDateTimeZone = offsetHours;
+            }
+            UpdateUserID = userId;
+            UpdateDate = DateTime.UtcNow;
+            LastUpdateTimeZone = offsetHours;
+        }
     }
     #pragma warning restore CS0169
 }

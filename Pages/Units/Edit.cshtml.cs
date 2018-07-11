@@ -34,7 +34,7 @@ namespace Phoenix.Pages.Units
                 return NotFound();
             }
 
-            Unit = await _context.Unit.FirstOrDefaultAsync(m => m.ID == id);
+            Unit = await _context.Unit.FirstOrDefaultAsync(m => m.UnitId == id);
 
             if (Unit == null)
             {
@@ -59,7 +59,7 @@ namespace Phoenix.Pages.Units
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!UnitExists(Unit.ID))
+                if (!UnitExists(Unit.UnitId))
                 {
                     return NotFound();
                 }
@@ -74,7 +74,7 @@ namespace Phoenix.Pages.Units
 
         private bool UnitExists(int id)
         {
-            return _context.Unit.Any(e => e.ID == id);
+            return _context.Unit.Any(e => e.UnitId == id);
         }
     }
 }

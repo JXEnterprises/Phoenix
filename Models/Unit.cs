@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Phoenix.Models
@@ -9,9 +10,10 @@ namespace Phoenix.Models
     public class Unit
     {
         /// <summary> Gets or sets the unique identifier. </summary>
-        public int ID { get; set; }
+        public int UnitId { get; set; }
 
         /// <summary> Gets or sets the current owner's name. </summary>
+        [Display(Name="Owner")]
         public string CustomerName { get; set; }
 
         /// <summary> Gets or sets the current owner's address. </summary>
@@ -37,10 +39,8 @@ namespace Phoenix.Models
 
         //Engine Liters
 
-        /// <summary> Gets or Sets the parent Deal of this Unit. </summary>
-        public Deal Deal { get; set; }
-        // <remarks> One Unit can have multiple Deals over its lifetime. </remarks>
-        //public ICollection<Deal> Deals { get; set; }
+        /// <summary> Gets or sets the collection navigation property for mapping to Units. </summary>
+        public IList<DealUnit> DealUnits { get; set; }
 
         #region Standard Audit Fields
         /// <summary> Gets or sets the user who added the record. </summary>
@@ -48,7 +48,6 @@ namespace Phoenix.Models
 
         // TODO: get rid of these annotations in favor of the Fluent API (see Asana task "EF - Standard Audit Fields")
         /// <summary> Gets or sets the UTC date the record was added. </summary>
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public DateTime AddDate { get; set; }
 
         /// <summary> Gets or sets the time zone offset of the date the record was added. </summary>
@@ -58,11 +57,31 @@ namespace Phoenix.Models
         public int UpdateUserID { get; set; }
 
         /// <summary> Gets or sets the UTC date the record was last updated. </summary>
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime UpdateDate { get; set; }
 
         /// <summary> Gets or sets the time zone offset of the date the record was last updated. </summary>
         public decimal LastUpdateTimeZone { get; set; }
         #endregion
+
+        /// <summary>
+        /// Updates Audit fields for the record.
+        /// </summary>
+        /// <param name="userId"> The user. </param>
+        public void UpdateAuditFields(int userId)
+        {
+            //! WARNING: Possible cross-platform idiosyncrasies!
+            var timeZone = TimeZoneInfo.Local;
+            var offset = timeZone.GetUtcOffset(DateTime.Now);
+            decimal offsetHours = offset.Hours + (offset.Minutes/60);
+            if (AddUserID == 0)
+            {
+                AddUserID = userId;
+                AddDate = DateTime.UtcNow;
+                AddDateTimeZone = offsetHours;
+            }
+            UpdateUserID = userId;
+            UpdateDate = DateTime.UtcNow;
+            LastUpdateTimeZone = offsetHours;
+        }
     }
 }

@@ -1,74 +1,44 @@
-@page
-@model Phoenix.Pages.Units.CreateModel
+@page 
+@model Phoenix.Pages.Units.CreateModel 
+@{ ViewData["Title"] = "New Appraisal"; }
 
-@{
-    ViewData["Title"] = "Create";
-}
-
-<h2>Create</h2>
-
-<h4>Unit</h4>
+<h2>New Inspection</h2>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Unit.CustomerName" class="control-label"></label>
-                <input asp-for="Unit.CustomerName" class="form-control" />
-                <span asp-validation-for="Unit.CustomerName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Unit.CustomerAddress" class="control-label"></label>
-                <input asp-for="Unit.CustomerAddress" class="form-control" />
-                <span asp-validation-for="Unit.CustomerAddress" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Unit.AppraiserName" class="control-label"></label>
-                <input asp-for="Unit.AppraiserName" class="form-control" />
-                <span asp-validation-for="Unit.AppraiserName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Unit.ModelYear" class="control-label"></label>
-                <input asp-for="Unit.ModelYear" class="form-control" />
-                <span asp-validation-for="Unit.ModelYear" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Unit.VIN" class="control-label"></label>
-                <input asp-for="Unit.VIN" class="form-control" />
-                <span asp-validation-for="Unit.VIN" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Unit.AddUserID" class="control-label"></label>
-                <input asp-for="Unit.AddUserID" class="form-control" />
-                <span asp-validation-for="Unit.AddUserID" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Unit.AddDateTimeZone" class="control-label"></label>
-                <input asp-for="Unit.AddDateTimeZone" class="form-control" />
-                <span asp-validation-for="Unit.AddDateTimeZone" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Unit.UpdateUserID" class="control-label"></label>
-                <input asp-for="Unit.UpdateUserID" class="form-control" />
-                <span asp-validation-for="Unit.UpdateUserID" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Unit.LastUpdateTimeZone" class="control-label"></label>
-                <input asp-for="Unit.LastUpdateTimeZone" class="form-control" />
-                <span asp-validation-for="Unit.LastUpdateTimeZone" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </form>
+<form method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group row">
+        <label asp-for="Unit.CustomerName" class="control-label"></label>
+        <input asp-for="Unit.CustomerName" class="form-control" />
+        <span asp-validation-for="Unit.CustomerName" class="text-danger"></span>
     </div>
-</div>
+    <div class="form-group row">
+        <label asp-for="Unit.CustomerAddress" class="control-label"></label>
+        <input asp-for="Unit.CustomerAddress" class="form-control" />
+        <span asp-validation-for="Unit.CustomerAddress" class="text-danger"></span>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Unit.AppraiserName" class="control-label"></label>
+        <input asp-for="Unit.AppraiserName" class="form-control" />
+        <span asp-validation-for="Unit.AppraiserName" class="text-danger"></span>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Unit.ModelYear" class="control-label"></label>
+        <input asp-for="Unit.ModelYear" class="form-control" />
+        <span asp-validation-for="Unit.ModelYear" class="text-danger"></span>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Unit.VIN" class="control-label"></label>
+        <input asp-for="Unit.VIN" class="form-control" />
+        <span asp-validation-for="Unit.VIN" class="text-danger"></span>
+    </div>
+    
+    <div class="form-group row">
+        <input type="submit" value="Create" class="btn btn-default" />
+    </div>
+</form>
 
 <div>
     <a asp-page="Index">Back to List</a>
 </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+@section Scripts { @{await Html.RenderPartialAsync("_ValidationScriptsPartial");} }

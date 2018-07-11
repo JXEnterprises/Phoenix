@@ -1,9 +1,6 @@
-@page
-@model Phoenix.Pages.Units.EditModel
-
-@{
-    ViewData["Title"] = "Edit";
-}
+@page 
+@model Phoenix.Pages.Units.EditModel 
+@{ ViewData["Title"] = "Edit"; }
 
 <h2>Edit</h2>
 
@@ -13,7 +10,7 @@
     <div class="col-md-4">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Unit.ID" />
+            <input type="hidden" asp-for="Unit.UnitId" />
             <div class="form-group">
                 <label asp-for="Unit.CustomerName" class="control-label"></label>
                 <input asp-for="Unit.CustomerName" class="form-control" />
@@ -39,30 +36,53 @@
                 <input asp-for="Unit.VIN" class="form-control" />
                 <span asp-validation-for="Unit.VIN" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Unit.AddUserID" class="control-label"></label>
-                <input asp-for="Unit.AddUserID" class="form-control" />
-                <span asp-validation-for="Unit.AddUserID" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Unit.AddDate" class="control-label"></label>
-                <input asp-for="Unit.AddDate" class="form-control" />
-                <span asp-validation-for="Unit.AddDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Unit.AddDateTimeZone" class="control-label"></label>
-                <input asp-for="Unit.AddDateTimeZone" class="form-control" />
-                <span asp-validation-for="Unit.AddDateTimeZone" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Unit.UpdateUserID" class="control-label"></label>
-                <input asp-for="Unit.UpdateUserID" class="form-control" />
-                <span asp-validation-for="Unit.UpdateUserID" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Unit.LastUpdateTimeZone" class="control-label"></label>
-                <input asp-for="Unit.LastUpdateTimeZone" class="form-control" />
-                <span asp-validation-for="Unit.LastUpdateTimeZone" class="text-danger"></span>
+            <div class="form-group row">
+                <a class="btn btn-info" data-toggle="collapse" href="#audit" role="button" aria-expanded="false" aria-controls="audit">
+                    Toggle Audit Info
+                </a>
+                <div class="collapse" id="audit">
+                    <div class="card card-body">
+                        <dl class="dl-horizontal">
+
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Unit.AddUserID)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.Unit.AddUserID)
+                            </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Unit.AddDate)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.Unit.AddDate)
+                            </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Unit.AddDateTimeZone)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.Unit.AddDateTimeZone)
+                            </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Unit.UpdateUserID)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.Unit.UpdateUserID)
+                            </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Unit.UpdateDate)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.Unit.UpdateDate)
+                            </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Unit.LastUpdateTimeZone)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.Unit.LastUpdateTimeZone)
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-default" />
@@ -75,6 +95,4 @@
     <a asp-page="./Index">Back to List</a>
 </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+@section Scripts { @{await Html.RenderPartialAsync("_ValidationScriptsPartial");} }

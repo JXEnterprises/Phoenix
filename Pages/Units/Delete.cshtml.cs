@@ -34,7 +34,7 @@ namespace Phoenix.Pages.Units
                 return NotFound();
             }
 
-            Unit = await _context.Unit.FirstOrDefaultAsync(m => m.ID == id);
+            Unit = await _context.Unit.FirstOrDefaultAsync(m => m.UnitId == id);
 
             if (Unit == null)
             {
