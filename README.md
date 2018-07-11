@@ -27,7 +27,7 @@ To get started with building this system from source on Windows, follow these st
 
 We use the [Git Flow](https://www.git-tower.com/learn/git/ebook/en/command-line/advanced-topics/git-flow) development methodology, which enables multiple team members to develop different features or fix bugs quickly while keeping merges to a minimum. We also use the industry-standard [Semantic Versioning scheme](https://semver.org/).
 
-Contributions will be accepted only to invited collaborators such as JX employees, consultants, and contractors. If you encounter a security vulnerability, please [Email Us]()
+Contributions will be accepted only to invited collaborators such as JX employees, consultants, and contractors. If you encounter a security vulnerability, please [Email Us](hdesk@jxe.com).
 
 ## Change Log
 
