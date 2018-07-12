@@ -19,9 +19,6 @@ namespace Phoenix.Data
                 return;   // DB has been seeded
             }
 
-            var utcNow = DateTime.UtcNow;
-            var offset = DateTimeOffset.Now.Hour;
-            
             var units = new Unit[]
             {
                 new Unit{CustomerName="Test, Bob",AppraiserName="Appraiser, Jim",CustomerAddress="100 Pigkicker Ln",ModelYear=1999,VIN="1M3P272K1XM001040"}
@@ -30,13 +27,17 @@ namespace Phoenix.Data
             {
                 new Deal{}
             };
-            //units[0].Deals.Add(deals[0]);
-            units[0].Deal = deals[0];
-            deals[0].Units = new List<Unit>();
-            deals[0].Units.Add(units[0]);
+            foreach (var deal in deals) deal.UpdateAuditFields(1);
+            foreach (var unit in units) unit.UpdateAuditFields(1);
+            var dealUnits = new DealUnit[]
+            {
+                new DealUnit{Deal = deals[0], Unit = units[0]}
+            };
+            deals[0].DealUnits = dealUnits;
             
-            context.Deal.AddRange(deals);
             context.Unit.AddRange(units);
+            context.Deal.AddRange(deals);
+            context.DealUnit.AddRange(dealUnits);
 
             context.SaveChanges();
         }
