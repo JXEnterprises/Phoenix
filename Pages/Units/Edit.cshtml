@@ -1,95 +1,103 @@
 @page 
 @model Phoenix.Pages.Units.EditModel 
-@{ ViewData["Title"] = "Edit"; }
+@{ 
+    var editTitle = Model.Unit.CustomerName ?? Model.Unit.CustomerName;
+    editTitle += (Model.Unit.ModelYear != 0 ? (editTitle.Length > 0 ? "'s " : "" ) + Model.Unit.ModelYear.ToString() : "");
+    ViewData["Title"] = "Edit " + editTitle; 
+}
 
-<h2>Edit</h2>
-
-<h4>Unit</h4>
+<h2>Edit Inspection</h2>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Unit.UnitId" />
-            <div class="form-group">
-                <label asp-for="Unit.CustomerName" class="control-label"></label>
-                <input asp-for="Unit.CustomerName" class="form-control" />
-                <span asp-validation-for="Unit.CustomerName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Unit.CustomerAddress" class="control-label"></label>
-                <input asp-for="Unit.CustomerAddress" class="form-control" />
-                <span asp-validation-for="Unit.CustomerAddress" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Unit.AppraiserName" class="control-label"></label>
-                <input asp-for="Unit.AppraiserName" class="form-control" />
-                <span asp-validation-for="Unit.AppraiserName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Unit.ModelYear" class="control-label"></label>
-                <input asp-for="Unit.ModelYear" class="form-control" />
-                <span asp-validation-for="Unit.ModelYear" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Unit.VIN" class="control-label"></label>
-                <input asp-for="Unit.VIN" class="form-control" />
-                <span asp-validation-for="Unit.VIN" class="text-danger"></span>
-            </div>
-            <div class="form-group row">
-                <a class="btn btn-info" data-toggle="collapse" href="#audit" role="button" aria-expanded="false" aria-controls="audit">
+<form method="post" class="form-horizontal">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="Unit.UnitId" />
+    <div class="form-group ">
+        <label asp-for="Unit.CustomerName" class="control-label"></label>
+        <div class="input-group">
+            <input asp-for="Unit.CustomerName" class="form-control" />
+            <span asp-validation-for="Unit.CustomerName" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Unit.CustomerAddress" class="control-label"></label>
+        <div class="input-group">
+            <input asp-for="Unit.CustomerAddress" class="form-control" />
+            <span asp-validation-for="Unit.CustomerAddress" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Unit.AppraiserName" class="control-label"></label>
+        <div class="input-group">
+            <input asp-for="Unit.AppraiserName" class="form-control" />
+            <span asp-validation-for="Unit.AppraiserName" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Unit.ModelYear" class="control-label"></label>
+        <div class="input-group">
+            <input asp-for="Unit.ModelYear" class="form-control" />
+            <span asp-validation-for="Unit.ModelYear" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Unit.VIN" class="control-label"></label>
+        <div class="input-group">
+            <input asp-for="Unit.VIN" class="form-control" />
+            <span asp-validation-for="Unit.VIN" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <a class="btn btn-info" data-toggle="collapse" href="#audit" role="button" aria-expanded="false" aria-controls="audit">
                     Toggle Audit Info
                 </a>
-                <div class="collapse" id="audit">
-                    <div class="card card-body">
-                        <dl class="dl-horizontal">
+        <div class="collapse" id="audit">
+            <div class="card card-body">
+                <dl class="dl-horizontal">
 
-                            <dt>
-                                @Html.DisplayNameFor(model => model.Unit.AddUserID)
-                            </dt>
-                            <dd>
-                                @Html.DisplayFor(model => model.Unit.AddUserID)
-                            </dd>
-                            <dt>
-                                @Html.DisplayNameFor(model => model.Unit.AddDate)
-                            </dt>
-                            <dd>
-                                @Html.DisplayFor(model => model.Unit.AddDate)
-                            </dd>
-                            <dt>
-                                @Html.DisplayNameFor(model => model.Unit.AddDateTimeZone)
-                            </dt>
-                            <dd>
-                                @Html.DisplayFor(model => model.Unit.AddDateTimeZone)
-                            </dd>
-                            <dt>
-                                @Html.DisplayNameFor(model => model.Unit.UpdateUserID)
-                            </dt>
-                            <dd>
-                                @Html.DisplayFor(model => model.Unit.UpdateUserID)
-                            </dd>
-                            <dt>
-                                @Html.DisplayNameFor(model => model.Unit.UpdateDate)
-                            </dt>
-                            <dd>
-                                @Html.DisplayFor(model => model.Unit.UpdateDate)
-                            </dd>
-                            <dt>
-                                @Html.DisplayNameFor(model => model.Unit.LastUpdateTimeZone)
-                            </dt>
-                            <dd>
-                                @Html.DisplayFor(model => model.Unit.LastUpdateTimeZone)
-                            </dd>
-                        </dl>
-                    </div>
-                </div>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Unit.AddUserID)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Unit.AddUserID)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Unit.AddDate)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Unit.AddDate)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Unit.AddDateTimeZone)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Unit.AddDateTimeZone)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Unit.UpdateUserID)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Unit.UpdateUserID)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Unit.UpdateDate)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Unit.UpdateDate)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Unit.LastUpdateTimeZone)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Unit.LastUpdateTimeZone)
+                    </dd>
+                </dl>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </form>
+        </div>
     </div>
-</div>
+    <div class="form-group">
+        <input type="submit" value="Save" class="btn btn-default" />
+    </div>
+</form>
 
 <div>
     <a asp-page="./Index">Back to List</a>
