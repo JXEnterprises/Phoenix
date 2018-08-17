@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
+using Phoenix.Models.DealViewModels;
+
 namespace Phoenix.Models
 {
     /// <summary> Represents the database session backing Phoenix. </summary>
@@ -24,6 +26,9 @@ namespace Phoenix.Models
 
         /// <summary> Used to query and save instances of DealUnit. </summary>
         public DbSet<DealUnit> DealUnit { get; set; }
+        /// <summary>
+        /// Used to query and save instances of AppraisalData. </summary>
+        public DbSet<Appraisal> Appraisal {get; set; }
 
         /// <summary> Used to furthered configure the discovered model. </summary>
         protected override void OnModelCreating(ModelBuilder builder)
@@ -60,6 +65,26 @@ namespace Phoenix.Models
                     d.HasKey(du => new {du.DealId, du.UnitId});
                 }
             );
+            builder.Entity<Appraisal>(
+                a => 
+                {
+                    a.HasKey("_id");
+                    /* d.Property(e => e.AddDateTimeZone)
+                     .HasColumnType("decimal(4, 2)");
+                    d.Property(e => e.LastUpdateTimeZone)
+                     .HasColumnType("decimal(4, 2)"); */
+                }
+            );
+        }
+
+        public bool UnitExists(int id)
+        {
+            return Unit.Any(u => u.UnitId == id);
+        }
+
+        public bool AppraisalExists(int id)
+        {
+            return Appraisal.Any(a => a._id == id);
         }
     }
 }

@@ -59,7 +59,7 @@ namespace Phoenix.Pages.Units
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!UnitExists(Unit.UnitId))
+                if (!_context.UnitExists(Unit.UnitId))
                 {
                     return NotFound();
                 }
@@ -70,11 +70,6 @@ namespace Phoenix.Pages.Units
             }
 
             return RedirectToPage("./Index");
-        }
-
-        private bool UnitExists(int id)
-        {
-            return _context.Unit.Any(e => e.UnitId == id);
         }
     }
 }

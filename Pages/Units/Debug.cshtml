@@ -1,0 +1,26 @@
+@page
+@model DebugModel
+@{
+    ViewData["Title"] = "Debug";
+    Layout = "~/Pages/_Layout.cshtml";
+}
+
+<style type="text/css">
+    table {
+        border: 1px solid black;
+    }
+    td {
+        border: 1px solid gray;
+        padding: 10px;
+    }
+</style>
+
+<h2>Debug</h2>
+
+@* We can do the same with any IEnumerable!  *@
+@Model.Units.DebugTable()
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

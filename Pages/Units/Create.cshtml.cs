@@ -12,11 +12,11 @@ namespace Phoenix.Pages.Units
     /// <summary> Represents the "Create Unit" page model. </summary>
     public class CreateModel : PageModel
     {
-        private readonly Phoenix.Models.DealContext _context;
+        private readonly DealContext _context;
 
         /// <summary> The constructor. </summary>
         /// <param name="context"> The DealContext. See <see cref="DealContext"/>. </param>
-        public CreateModel(Phoenix.Models.DealContext context)
+        public CreateModel(DealContext context)
         {
             _context = context;
         }

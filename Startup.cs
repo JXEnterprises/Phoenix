@@ -36,6 +36,18 @@ namespace Phoenix
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            //TODO: ADD THIS after we get the Appraisal form working
+            /* services.AddIdentity<IdentityUser, IdentityRole>();
+             services.AddAuthentication(
+                     v =>
+                     {
+                         v.DefaultAuthenticateScheme = GoogleDefaults.AuthenticationScheme;
+                         v.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
+                     }).AddGoogle(googleOptions =>
+                     {
+                         googleOptions.ClientId = Configuration["Authentication:Google:ClientId"];
+                         googleOptions.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
+                     });  */
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
@@ -60,13 +72,10 @@ namespace Phoenix
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
-             app.UseMvc(); 
-            /* //// routes =>
-            // {
-            //     routes.MapRoute(
-            //         name: "default",
-            //         template: "{controller=Home}/{action=Index}/{id?}");
-            // }); */
+            //TODO: ADD THIS after we get the Appraisal form working
+            //app.UseAuthentication()
+            //   .UseMvc();
+            app.UseMvc();
         }
     }
 }
