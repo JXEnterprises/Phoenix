@@ -1,5 +1,6 @@
 @page
-@model AppraisalModel
+@* @using Phoenix.Pages.Units *@
+@model Phoenix.Pages.Units.AppraisalModel
 @{ 
   ViewData["Title"] = "Used Truck Appraisal";
 }
@@ -10,27 +11,27 @@
     <form class="form-horizontal" method="post">
       
      <div class="form-group ">
-      <label class="control-label col-sm-2 requiredField" asp-for="AppraisalData.Appraisal.SubmissionDate"></label>
+      <label class="control-label col-sm-2 requiredField" asp-for="@Model.AppraisalData.Appraisal.SubmissionDate"></label>
       <div class="col-sm-10">
-       <input class="form-control" asp-for="AppraisalData.Appraisal.SubmissionDate"/>
-       <span asp-validation-for="AppraisalData.Appraisal.SubmissionDate" class="text-danger"></span>
+       <input class="form-control" asp-for="@Model.AppraisalData.Appraisal.SubmissionDate"/>
+       <span asp-validation-for="@Model.AppraisalData.Appraisal.SubmissionDate" class="text-danger"></span>
       </div>
      </div>
      <div class="form-group ">
-      <label class="control-label col-sm-2 requiredField" asp-for="AppraisalData.Appraisal.Branch"></label>
+      <label class="control-label col-sm-2 requiredField" asp-for="@Model.AppraisalData.Appraisal.Branch"></label>
       <div class="col-sm-10">
-        <select class="select form-congrol" asp-for="AppraisalData.Appraisal.Branch"
+        <select class="select form-congrol" asp-for="@Model.AppraisalData.Appraisal.Branch"
                 asp-items="Model.AppraisalData.BranchOptions">
           <!-- <option value="">-- Select Branch --</option> -->
         </select>
-       <span asp-validation-for="AppraisalData.Appraisal.SubmissionDate" class="text-danger"></span>
+       <span asp-validation-for="@Model.AppraisalData.Appraisal.SubmissionDate" class="text-danger"></span>
       </div>
      </div>
      <div class="form-group hidden" id="branch-other">
-      <label class="control-label col-sm-2 requiredField" asp-for="AppraisalData.Appraisal.BranchOther"></label>
+      <label class="control-label col-sm-2 requiredField" asp-for="@Model.AppraisalData.Appraisal.BranchOther"></label>
       <div class="col-sm-10">
-       <input class="form-control" asp-for="AppraisalData.Appraisal.BranchOther"/>
-       <span asp-validation-for="AppraisalData.Appraisal.BranchOther" class="text-danger"></span>
+       <input class="form-control" asp-for="@Model.AppraisalData.Appraisal.BranchOther"/>
+       <span asp-validation-for="@Model.AppraisalData.Appraisal.BranchOther" class="text-danger"></span>
       </div>
      </div>
      <div class="form-group">

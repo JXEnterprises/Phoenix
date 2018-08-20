@@ -11,7 +11,7 @@ Here at JX Enterprises, we pride ourselves on our commitment to our customers. W
 To get started with building this system from source on Windows, follow these steps:
 
 1. Install [.NET Core 2.1](https://download.microsoft.com/download/D/0/4/D04C5489-278D-4C11-9BD3-6128472A7626/dotnet-sdk-2.1.301-win-gs-x64.exe).
-2. Install [Visual Studio Code](https://code.visualstudio.com/).
+2. Install [Visual Studio Code](https://code.visualstudio.com/), either the regular or Insiders edition.
 3. Install [Git for Windows](https://git-scm.com/download/win) (download begins automatically).
 4. Install a [SQL Server](https://go.microsoft.com/fwlink/?linkid=853016) instance, and ensure it uses Windows (integrated) authentication instead of SQL Authentication. Keep the default name so you can connect to it as `(local)`.
 5. Choose a directory where you will work. The author keeps his source code in `C:\src` and Phoenix is in `C:\src\dotnet\Phoenix`.
@@ -23,11 +23,11 @@ To get started with building this system from source on Windows, follow these st
 11. To debug, hit `F5`. Watch the `DEBUG CONSOLE` for diagnostic information such as web server directives, raw SQL sent to the database, and more!
 12. Your default browser should open a new tab to the website. If you land on a page warning that your connection is not private, it is because you don't have a development certificate installed. You can "proceed anyway", since you know that the computer serving the site is, in fact, your own.
 
+**Note:** If you begin experiencing errors when navigating to pages, you may have encountered a bug within .NET Core. To remedy this, delete the `bin` and `code` directories and `dotnet restore` the project. This problem seems to only occur after making namespace changes.
+
 ## Contributing
 
-We use the [Git Flow](https://www.git-tower.com/learn/git/ebook/en/command-line/advanced-topics/git-flow) development methodology, which enables multiple team members to develop different features or fix bugs quickly while keeping merges to a minimum. We also use the industry-standard [Semantic Versioning scheme](https://semver.org/).
-
-Contributions will be accepted only to invited collaborators such as JX employees, consultants, and contractors. If you encounter a security vulnerability, please [Email Us](hdesk@jxe.com).
+We follow the industry-standard [Semantic Versioning scheme](https://semver.org/). Contributions will be accepted only to invited collaborators such as JX employees, consultants, and contractors. If you encounter a security vulnerability, please [Email Us](hdesk@jxe.com).
 
 ## Change Log
 

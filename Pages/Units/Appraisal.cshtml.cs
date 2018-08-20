@@ -31,7 +31,8 @@ namespace Phoenix.Pages.Units
         /// <summary> Fires asynchronously when the page is accessed via the GET HTTP verb. </summary>
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            AppraisalData = new AppraisalData();
+            if (AppraisalData == null)
+                AppraisalData = new AppraisalData();
             if (id.HasValue)
             {
                 AppraisalData.Appraisal = await _context.Appraisal.FindAsync(id);
