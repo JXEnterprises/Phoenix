@@ -7,6 +7,7 @@ namespace Phoenix.Models.DealViewModels
 {
     public class AppraisalData
     {
+        /// <summary> Gets or sets the option list for the Appraisal's Branch property. </summary>
         public List<SelectListItem> BranchOptions { get; set; }
         
         /// <summary> Gets or sets the navigation property for the Appraisal. </summary>
@@ -15,6 +16,7 @@ namespace Phoenix.Models.DealViewModels
         /// <summary> Gets or sets the navigation property for the Deal. </summary>
         public Deal Deal { get; set; }
 
+        /// <summary> Populates all option lists for Select tags. </summary>
         public void PopulateListItems()
         {
             BranchOptions = new List<SelectListItem>
@@ -36,6 +38,16 @@ namespace Phoenix.Models.DealViewModels
             };
         }
 
+        public void PopulateListBackedFieldsForPageDisplay()
+        {
+            if (Appraisal.Branch.hasOtherSelected(BranchOptions))
+            {
+                BranchOptions[BranchOptions.FindIndex(b => b.Value == "Other")].Selected = true;
+                Appraisal.BranchOther = Appraisal.Branch;
+            }
+        }
+
+        /// <summary> The AppraisalData constructor, which calls <see cref="PopulateListItems()"/>. </summary>
         public AppraisalData()
         {
             PopulateListItems();
