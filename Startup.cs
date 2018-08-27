@@ -11,6 +11,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using Phoenix.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authentication.Google;
 
 namespace Phoenix
 {
@@ -47,7 +49,7 @@ namespace Phoenix
                      {
                          googleOptions.ClientId = Configuration["Authentication:Google:ClientId"];
                          googleOptions.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
-                     });  */
+                     }); */
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
@@ -73,9 +75,9 @@ namespace Phoenix
             app.UseCookiePolicy();
 
             //TODO: ADD THIS after we get the Appraisal form working
-            //app.UseAuthentication()
-            //   .UseMvc();
-            app.UseMvc();
+            app.UseAuthentication()
+               .UseMvc();
+            //app.UseMvc();
         }
     }
 }

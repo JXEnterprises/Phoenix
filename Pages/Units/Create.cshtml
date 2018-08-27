@@ -31,6 +31,42 @@
         <input asp-for="Unit.VIN" class="form-control" />
         <span asp-validation-for="Unit.VIN" class="text-danger"></span>
     </div>
+
+    @foreach(var item in Model.UnitCharacteristics) {
+        <div class="form-group row">
+            <label class="control-label">
+                @item.UnitCharacteristicName
+            </label>
+            @if (item.UnitCharacteristicType == "YesNo")
+            {
+                <div class="radio">
+                    <label>
+                    <input type="radio" name="@item.UnitCharacteristicName" id="@item.UnitCharacteristicName" value="Yes">
+                        Yes 
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                    <input type="radio" name="@item.UnitCharacteristicName" id="@item.UnitCharacteristicName" value="No">
+                        No
+                    </label>
+                </div>
+            } else if (item.UnitCharacteristicType == "List") {
+                    @foreach(var opt in item.ListValues)
+                    {
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="@item.UnitCharacteristicName" 
+                                    id="@item.UnitCharacteristicName" value="@opt.ListValueId">
+                                @opt.ListValueName
+                            </label>
+                        </div>
+                    }
+            } else {
+                <input class="form-control" id="@item.UnitCharacteristicName" />
+            }
+        </div>
+    }
     
     <div class="form-group row">
         <input type="submit" value="Create" class="btn btn-default" />

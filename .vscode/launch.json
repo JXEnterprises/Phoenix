@@ -10,7 +10,7 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/bin/Debug/netcoreapp2.1/Phoenix.dll",
+            "program": "${workspaceFolder}/bin/Debug/netcoreapp2.1/win10-x64/Phoenix.dll",
             "args": [],
             "cwd": "${workspaceFolder}",
             "stopAtEntry": false,
@@ -48,7 +48,7 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/bin/Debug/netcoreapp2.1/Phoenix.dll",
+            "program": "${workspaceFolder}/bin/Debug/netcoreapp2.1/win10-x64/Phoenix.dll",
             "args": [],
             "cwd": "${workspaceFolder}",
             "launchBrowser": {

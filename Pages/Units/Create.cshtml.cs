@@ -52,5 +52,34 @@ namespace Phoenix.Pages.Units
 
             return RedirectToPage("./Index");
         }
+    
+        public List<UnitCharacteristic> UnitCharacteristics { get {
+            return new List<UnitCharacteristic>() {
+                    new UnitCharacteristic { UnitCharacteristicName = "Sleeper", UnitCharacteristicType = "YesNo"},
+                    new UnitCharacteristic { UnitCharacteristicName = "Sleeper Configuration", UnitCharacteristicType = "List", 
+                    ListValues = new List<UnitCharacteristicListValue>() {
+                        new UnitCharacteristicListValue() {ListValueId = 1, ListValueName = "High Roof"},
+                        new UnitCharacteristicListValue() {ListValueId = 2, ListValueName = "Mid Roof"},
+                        new UnitCharacteristicListValue() {ListValueId = 3, ListValueName = "Flat Top"},
+                        new UnitCharacteristicListValue() {ListValueId = 4, ListValueName = "Not Applicable - Day Cab, Straight Truck, etc"},
+                    }},
+                    new UnitCharacteristic { UnitCharacteristicName = "Sleeper Size", UnitCharacteristicType = "List",
+                    ListValues = new List<UnitCharacteristicListValue>() {
+                        new UnitCharacteristicListValue() {ListValueId = 5, ListValueName = "78-80+"},
+                        new UnitCharacteristicListValue() {ListValueId = 6, ListValueName = "72-77"},
+                        new UnitCharacteristicListValue() {ListValueId = 7, ListValueName = "66-71"},
+                        new UnitCharacteristicListValue() {ListValueId = 8, ListValueName = "59-65"},
+                        new UnitCharacteristicListValue() {ListValueId = 9, ListValueName = "36-58"},
+                        new UnitCharacteristicListValue() {ListValueId = 4, ListValueName = "Not Applicable - Day Cab, Straight Truck, etc"},
+                    }},
+                    new UnitCharacteristic { UnitCharacteristicName = "Bunk Bed", UnitCharacteristicType = "YesNo"},
+                    new UnitCharacteristic { UnitCharacteristicName = "Interior Options"},
+                    new UnitCharacteristic { UnitCharacteristicName = "Engine Make"},
+                    new UnitCharacteristic { UnitCharacteristicName = "Horse Power"},
+                    new UnitCharacteristic { UnitCharacteristicName = "Engine Liters"},
+                    new UnitCharacteristic { UnitCharacteristicName = "Transmission"},
+                };
+            }
+        }
     }
 }

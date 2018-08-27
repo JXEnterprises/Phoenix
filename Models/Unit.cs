@@ -84,4 +84,35 @@ namespace Phoenix.Models
             LastUpdateTimeZone = offsetHours;
         }
     }
+
+    public class UnitCharacteristic 
+    {
+        public UnitCharacteristic() 
+        {
+            ListValues = new List<UnitCharacteristicListValue>();
+        }
+
+        public int UnitCharacteristicId {get;set;}
+
+        public string UnitCharacteristicName {get;set;}
+
+        public string UnitCharacteristicType {get;set;}
+
+        public List<UnitCharacteristicListValue> ListValues {get;set;}
+    }
+
+    public class UnitCharacteristicListValue 
+    {
+        public int ListValueId {get;set;}
+        public string ListValueName {get;set;}
+    }
+
+    public class UnitCharacteristicValue
+    {
+        public int UnitCharacteristicValueId {get;set;}
+        public int UnitId {get;set;}
+        public int UnitCharacteristicId {get;set;}
+        public int IntValue {get;set;}
+        public string StringValue {get;set;}
+    }
 }
