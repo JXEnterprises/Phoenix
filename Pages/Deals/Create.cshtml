@@ -1,0 +1,42 @@
+@page 
+@model Phoenix.Pages.Deals.CreateModel 
+@{ 
+    ViewData["Title"] = "Create Deal"; 
+}
+
+<h2>Create Deal</h2>
+<hr />
+<form method="post" class="form-horizontal">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="form-group">
+        <label class="control-label">Branch</label>
+        <select class="select form-congrol" asp-for="CreateDeal.ControlBranch"
+            asp-items="Model.CreateDeal.BranchOptions">
+            <!-- <option value="">-- Select Branch --</option> -->
+        </select>
+        <span asp-validation-for="CreateDeal.BranchOptions" class="text-danger"></span>
+    </div>
+
+    <div class="form-group ">
+        <label asp-for="Deal.CustomerName" class="control-label"></label>
+        <input asp-for="Deal.CustomerName" class="form-control" />
+        <span asp-validation-for="Deal.CustomerName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group ">
+        <label asp-for="Deal.DateOfSubmission" class="control-label"></label>
+        <input type="date" id="Deal_DateOfSubmission" name="Deal.DateOfSubmission" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Add Deal" class="btn btn-default" />
+    </div>
+</form>
+
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts { @{await Html.RenderPartialAsync("_ValidationScriptsPartial");} }

@@ -1,7 +1,7 @@
 @page 
 @model Phoenix.Pages.Units.EditModel 
 @{ 
-    var editTitle = Model.Unit.CustomerName ?? Model.Unit.CustomerName;
+    var editTitle = "";
     editTitle += (Model.Unit.ModelYear != 0 ? (editTitle.Length > 0 ? "'s " : "" ) + Model.Unit.ModelYear.ToString() : "");
     ViewData["Title"] = "Edit " + editTitle; 
 }
@@ -12,25 +12,10 @@
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <input type="hidden" asp-for="Unit.UnitId" />
     <div class="form-group ">
-        <label asp-for="Unit.CustomerName" class="control-label"></label>
-        <div class="input-group">
-            <input asp-for="Unit.CustomerName" class="form-control" />
-            <span asp-validation-for="Unit.CustomerName" class="text-danger"></span>
-        </div>
     </div>
     <div class="form-group row">
-        <label asp-for="Unit.CustomerAddress" class="control-label"></label>
-        <div class="input-group">
-            <input asp-for="Unit.CustomerAddress" class="form-control" />
-            <span asp-validation-for="Unit.CustomerAddress" class="text-danger"></span>
-        </div>
     </div>
     <div class="form-group row">
-        <label asp-for="Unit.AppraiserName" class="control-label"></label>
-        <div class="input-group">
-            <input asp-for="Unit.AppraiserName" class="form-control" />
-            <span asp-validation-for="Unit.AppraiserName" class="text-danger"></span>
-        </div>
     </div>
     <div class="form-group row">
         <label asp-for="Unit.ModelYear" class="control-label"></label>

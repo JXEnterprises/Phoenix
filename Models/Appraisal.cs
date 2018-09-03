@@ -23,6 +23,12 @@ namespace Phoenix.Models
         /// <summary> Gets or sets the <see cref="Appraisal"/> user-input branch. </summary>
         [MaxLength(32, ErrorMessage="Branch name must be less than 32 characters")]
         public string BranchOther { get; set; }
+        public Deal Deal {get;set;}
+
+        public Unit Unit {get;set;}
+
+        public string AppraisedBy {get; set;}
+
         /*public string CustomerName { get; set; }
         public string CustomerAddress { get; set; }
         public string AppraiserName { get; set; }
@@ -162,5 +168,36 @@ namespace Phoenix.Models
             LastUpdateTimeZone = offsetHours;
         }
         */
+    }
+
+    public class AppraisalCharacteristic 
+    {
+        public AppraisalCharacteristic() 
+        {
+            ListValues = new List<AppraisalCharacteristicListValue>();
+        }
+
+        public int AppraisalCharacteristicId {get;set;}
+
+        public string AppraisalCharacteristicName {get;set;}
+
+        public string AppraisalCharacteristicType {get;set;}
+
+        public List<AppraisalCharacteristicListValue> ListValues {get;set;}
+    }
+
+    public class AppraisalCharacteristicListValue 
+    {
+        public int ListValueId {get;set;}
+        public string ListValueName {get;set;}
+    }
+
+    public class AppraisalCharacteristicValue
+    {
+        public int AppraisalCharacteristicValueId {get;set;}
+        public int AppraisalId {get;set;}
+        public int AppraisalCharacteristicId {get;set;}
+        public int IntValue {get;set;}
+        public string StringValue {get;set;}
     }
 }

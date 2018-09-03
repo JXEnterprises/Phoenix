@@ -21,7 +21,7 @@ namespace Phoenix.Data
 
             var units = new Unit[]
             {
-                new Unit{CustomerName="Test, Bob",AppraiserName="Appraiser, Jim",CustomerAddress="100 Pigkicker Ln",ModelYear=1999,VIN="1M3P272K1XM001040"}
+                new Unit{ModelYear=1999,VIN="1M3P272K1XM001040"}
             };
             var deals = new Deal[]
             {
@@ -33,7 +33,7 @@ namespace Phoenix.Data
             {
                 new DealUnit{Deal = deals[0], Unit = units[0]}
             };
-            deals[0].DealUnits = dealUnits;
+            //deals[0].DealUnits = dealUnits;
             
             context.Unit.AddRange(units);
             context.Deal.AddRange(deals);

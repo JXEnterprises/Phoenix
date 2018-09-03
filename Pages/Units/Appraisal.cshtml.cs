@@ -111,5 +111,35 @@ namespace Phoenix.Pages.Units
             //return to main index???
             return RedirectToPage("../Index");
         }
+        public List<AppraisalCharacteristic> AppraisalCharacteristics { get {
+            return new List<AppraisalCharacteristic>() {
+                    new AppraisalCharacteristic { AppraisalCharacteristicName = "Sleeper", AppraisalCharacteristicType = "YesNo"},
+                    new AppraisalCharacteristic { AppraisalCharacteristicName = "Sleeper Configuration", AppraisalCharacteristicType = "List", 
+                    ListValues = new List<AppraisalCharacteristicListValue>() {
+                        new AppraisalCharacteristicListValue() {ListValueId = 1, ListValueName = "High Roof"},
+                        new AppraisalCharacteristicListValue() {ListValueId = 2, ListValueName = "Mid Roof"},
+                        new AppraisalCharacteristicListValue() {ListValueId = 3, ListValueName = "Flat Top"},
+                        new AppraisalCharacteristicListValue() {ListValueId = 4, ListValueName = "Not Applicable - Day Cab, Straight Truck, etc"},
+                    }},
+                    new AppraisalCharacteristic { AppraisalCharacteristicName = "Sleeper Size", AppraisalCharacteristicType = "List",
+                    ListValues = new List<AppraisalCharacteristicListValue>() {
+                        new AppraisalCharacteristicListValue() {ListValueId = 5, ListValueName = "78-80+"},
+                        new AppraisalCharacteristicListValue() {ListValueId = 6, ListValueName = "72-77"},
+                        new AppraisalCharacteristicListValue() {ListValueId = 7, ListValueName = "66-71"},
+                        new AppraisalCharacteristicListValue() {ListValueId = 8, ListValueName = "59-65"},
+                        new AppraisalCharacteristicListValue() {ListValueId = 9, ListValueName = "36-58"},
+                        new AppraisalCharacteristicListValue() {ListValueId = 4, ListValueName = "Not Applicable - Day Cab, Straight Truck, etc"},
+                    }},
+                    new AppraisalCharacteristic { AppraisalCharacteristicName = "Bunk Bed", AppraisalCharacteristicType = "YesNo"},
+                    new AppraisalCharacteristic { AppraisalCharacteristicName = "Interior Options"},
+                    new AppraisalCharacteristic { AppraisalCharacteristicName = "Engine Make"},
+                    new AppraisalCharacteristic { AppraisalCharacteristicName = "Horse Power"},
+                    new AppraisalCharacteristic { AppraisalCharacteristicName = "Engine Liters"},
+                    new AppraisalCharacteristic { AppraisalCharacteristicName = "Transmission"},
+                };
+            }
+        }
+
+
     }
 }

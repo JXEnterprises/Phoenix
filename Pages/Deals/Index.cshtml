@@ -1,0 +1,53 @@
+@page
+@model Phoenix.Pages.Deals.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a href="/Deals/Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+               Date of Submission 
+            </th>
+            <th>
+                Customer Name
+            </th>
+            <th>
+                Appraised By
+            </th>
+            <th>
+                # of Appraisals
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Deals) {
+        <tr>
+            <td>
+                @item.DateOfSubmission
+            </td>
+            <td>
+                @item.CustomerName
+            </td>
+            <td>
+                @item.ControlBranch
+            </td>
+            <td>
+                @item.Appraisals.Count()
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item._id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item._id">Details</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

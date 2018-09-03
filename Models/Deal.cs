@@ -9,18 +9,24 @@ namespace Phoenix.Models
     /// <summary> Represents an appraisal of, and possible offer to purchase, 1 or more Units. </summary>
     public class Deal
     {
+        public Deal()
+        {
+            Appraisals = new List<Appraisal>();
+        }
+
         /// <summary> Gets or sets the Deal's unique identifier. </summary>
         [Key]
-        private int _id;
+        public int _id;
+
+        public DateTime? DateOfSubmission {get; set;}
 
         /// <summary> Gets or sets the control branch. </summary>
         /// <example> Madison </example>
         public string ControlBranch { get; set; }
 
-        /// <summary> Gets or sets the collection navigation property for mapping to Deals. </summary>
-        public IList<DealUnit> DealUnits { get; set; }
+        public string CustomerName {get;set;}
 
-        // ? control branch? 
+        public ICollection<Appraisal> Appraisals {get;set;}
 
         #region Standard Audit Fields
         /// <summary> Gets or sets the user who added the record. </summary>

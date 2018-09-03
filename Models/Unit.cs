@@ -12,35 +12,18 @@ namespace Phoenix.Models
         /// <summary> Gets or sets the unique identifier. </summary>
         public int UnitId { get; set; }
 
-        /// <summary> Gets or sets the current owner's name. </summary>
-        [Display(Name="Owner")]
-        public string CustomerName { get; set; }
-
-        /// <summary> Gets or sets the current owner's address. </summary>
-        public string CustomerAddress { get; set; }
-
-        /// <summary> Gets or sets the appraiser's name. </summary>
-        public string AppraiserName { get; set; }
-
-        //Branch - lookup
-
         /// <summary> Gets or sets the title or model year. </summary>
         public int ModelYear { get; set; }
         
         //Make - lookup
+        public string Make {get;set;}
+
+        public string Model {get;set;}
 
         //Model - lookup
         /// <summary> Gets or sets the Vehicle Identification Number. </summary>
         public string VIN { get; set; }
 
-        //Engine Make - string
-
-        //Horsepower
-
-        //Engine Liters
-
-        /// <summary> Gets or sets the collection navigation property for mapping to Units. </summary>
-        public IList<DealUnit> DealUnits { get; set; }
 
         #region Standard Audit Fields
         /// <summary> Gets or sets the user who added the record. </summary>
@@ -85,34 +68,5 @@ namespace Phoenix.Models
         }
     }
 
-    public class UnitCharacteristic 
-    {
-        public UnitCharacteristic() 
-        {
-            ListValues = new List<UnitCharacteristicListValue>();
-        }
 
-        public int UnitCharacteristicId {get;set;}
-
-        public string UnitCharacteristicName {get;set;}
-
-        public string UnitCharacteristicType {get;set;}
-
-        public List<UnitCharacteristicListValue> ListValues {get;set;}
-    }
-
-    public class UnitCharacteristicListValue 
-    {
-        public int ListValueId {get;set;}
-        public string ListValueName {get;set;}
-    }
-
-    public class UnitCharacteristicValue
-    {
-        public int UnitCharacteristicValueId {get;set;}
-        public int UnitId {get;set;}
-        public int UnitCharacteristicId {get;set;}
-        public int IntValue {get;set;}
-        public string StringValue {get;set;}
-    }
 }

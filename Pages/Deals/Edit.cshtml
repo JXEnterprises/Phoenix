@@ -1,0 +1,32 @@
+@page 
+@model Phoenix.Pages.Deals.EditModel 
+@{ 
+    ViewData["Title"] = "Edit Deal"; 
+}
+
+<h2>Edit Deal</h2>
+<hr />
+<form method="post" class="form-horizontal">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="Deal._id" />
+
+    <div class="form-group ">
+        <label asp-for="Deal.DateOfSubmission" class="control-label"></label>
+        <div class="input-group">
+            <input asp-for="Deal.DateOfSubmission" class="form-control" />
+            <span asp-validation-for="Deal.DateOfSubmission" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <a class="btn btn-default" href="/Units/Create?DealId=@Model.Deal._id" role="button">Add Deal</a>
+        <input type="submit" value="Add Deal" class="btn btn-default" />
+    </div>
+</form>
+
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts { @{await Html.RenderPartialAsync("_ValidationScriptsPartial");} }

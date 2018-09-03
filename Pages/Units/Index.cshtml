@@ -14,13 +14,10 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Unit[0].CustomerName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Unit[0].CustomerAddress)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Unit[0].AppraiserName)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Unit[0].ModelYear)
@@ -53,13 +50,10 @@
 @foreach (var item in Model.Unit) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.CustomerName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CustomerAddress)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.AppraiserName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ModelYear)
