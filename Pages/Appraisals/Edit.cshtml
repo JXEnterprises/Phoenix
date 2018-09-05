@@ -1,0 +1,91 @@
+@page
+@* @using Phoenix.Pages.Units *@
+@model Phoenix.Pages.Appraisal.EditModel
+@{ 
+  ViewData["Title"] = "Used Truck Appraisal";
+}
+
+<div class="container body-content" style="padding-top: 50px">
+  <div class="row">
+   <div class="col-md-6 col-sm-6 col-xs-12">
+    <form class="form-horizontal" method="post">
+        <input type="hidden" name="EditAppraisal.Deal.Id" id="EditAppraisal_Deal_Id" value="@Model.EditAppraisal.Deal.Id"/>
+
+    <div class="form-group row">
+        <label asp-for="EditAppraisal.AppraisedBy" class="control-label"></label>
+        <input asp-for="EditAppraisal.AppraisedBy" class="form-control" />
+        <span asp-validation-for="EditAppraisal.AppraisedBy" class="text-danger"></span>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="EditAppraisal.Unit.ModelYear" class="control-label"></label>
+        <input asp-for="EditAppraisal.Unit.ModelYear" class="form-control" />
+        <span asp-validation-for="EditAppraisal.Unit.ModelYear" class="text-danger"></span>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="EditAppraisal.Unit.Make" class="control-label"></label>
+        <input asp-for="EditAppraisal.Unit.Make" class="form-control" />
+        <span asp-validation-for="EditAppraisal.Unit.Make" class="text-danger"></span>
+    </div>
+    <div class="form-group row">
+        <label asp-for="EditAppraisal.Unit.Model" class="control-label"></label>
+        <input asp-for="EditAppraisal.Unit.Model" class="form-control" />
+        <span asp-validation-for="EditAppraisal.Unit.Model" class="text-danger"></span>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="EditAppraisal.Unit.VIN" class="control-label"></label>
+        <input asp-for="EditAppraisal.Unit.VIN" class="form-control" />
+        <span asp-validation-for="EditAppraisal.Unit.VIN" class="text-danger"></span>
+    </div>
+
+
+    @foreach(var item in Model.AppraisalCharacteristics) {
+        <div class="form-group row">
+            <label class="control-label">
+                @item.AppraisalCharacteristicName
+            </label>
+            @if (item.AppraisalCharacteristicType == "YesNo")
+            {
+                <div class="radio">
+                    <label>
+                    <input type="radio" name="@item.AppraisalCharacteristicName" id="@item.AppraisalCharacteristicName" value="Yes">
+                        Yes 
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                    <input type="radio" name="@item.AppraisalCharacteristicName" id="@item.AppraisalCharacteristicName" value="No">
+                        No
+                    </label>
+                </div>
+            } else if (item.AppraisalCharacteristicType == "List") {
+                    @foreach(var opt in item.ListValues)
+                    {
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="@item.AppraisalCharacteristicName" 
+                                    id="@item.AppraisalCharacteristicName" value="@opt.ListValueName">
+                                @opt.ListValueName
+                            </label>
+                        </div>
+                    }
+            } else {
+                <input class="form-control" id="@item.AppraisalCharacteristicName" />
+            }
+        </div>
+    }
+
+
+     <div class="form-group">
+      <div class="col-sm-4 col-sm-offset-2">
+       <button class="btn btn-primary " type="submit" asp-page-handler="Save">
+        Save
+       </button>
+      </div>
+     </div>
+    </form>
+   </div>
+  </div>
+ </div>

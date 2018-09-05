@@ -49,6 +49,8 @@ namespace Phoenix.Models
                     d.Property(e => e.LastUpdateTimeZone)
                      .HasColumnType("decimal(4, 2)");
                     d.Property(e => e.UpdateUserID);
+                    d.HasMany(e => e.Appraisals)
+                     .WithOne(e => e.Deal);
                 }
             );
             builder.Entity<Unit>(

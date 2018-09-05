@@ -26,7 +26,7 @@ namespace Phoenix.Models
 
         public string CustomerName {get;set;}
 
-        public ICollection<Appraisal> Appraisals {get;set;}
+        public List<Appraisal> Appraisals {get;set;}
 
         #region Standard Audit Fields
         /// <summary> Gets or sets the user who added the record. </summary>

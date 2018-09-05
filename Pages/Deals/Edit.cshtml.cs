@@ -34,7 +34,10 @@ namespace Phoenix.Pages.Deals
                 return NotFound();
             }
 
-            Deal = await _context.Deal.FirstOrDefaultAsync(m => m.Id == id);
+            Deal = await _context.Deal
+            .Include(x => x.Appraisals)
+            .ThenInclude(x => x.Unit)
+            .FirstOrDefaultAsync(m => m.Id == id);
 
             if (Deal == null)
             {

@@ -27,7 +27,7 @@ namespace Phoenix.Pages.Deals
         /// <summary> Fires asynchronously when the page is accessed via the GET HTTP verb. </summary>
         public async Task OnGetAsync()
         {
-            Deals = await _context.Deal.ToListAsync();
+            Deals = await _context.Deal.Include(x => x.Appraisals).ToListAsync();
         }
     }
 }
