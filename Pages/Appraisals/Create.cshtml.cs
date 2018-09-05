@@ -10,44 +10,34 @@ using Microsoft.EntityFrameworkCore;
 using Phoenix.Models;
 using Phoenix.Models.DealViewModels;
 
-namespace Phoenix.Pages.Units
+namespace Phoenix.Pages.Appraisal
 {
     /// <summary> Represents the main Appraisal submission page. </summary>
-    public class AppraisalModel : PageModel
+    public class CreateModel : PageModel
     {
         /// <summary> Gets or sets the data view model for the Appraisal page </summary>
         [BindProperty]
-        public AppraisalData AppraisalData { get; set; }
+        public CreateAppraisal CreateAppraisal { get; set; }
 
         private readonly DealContext _context;
 
         /// <summary> The constructor. </summary>
         /// <param name="context"> The data session backing Phoenix. </param>
-        public AppraisalModel(DealContext context)
+        public CreateModel(DealContext context)
         {
             _context = context;
         }
 
         /// <summary> Fires asynchronously when the page is accessed via the GET HTTP verb. </summary>
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(int? dealId)
         {
-            if (AppraisalData == null)
-                AppraisalData = new AppraisalData();
-            if (id.HasValue)
-            {
-                AppraisalData.Appraisal = await _context.Appraisal.FindAsync(id);
-                if (AppraisalData.Appraisal == null)
-                {
-                    return NotFound();
-                }
-                
-                //else you can grab the Deal as well, probably off the Appraisal
-            }
+            CreateAppraisal = new CreateAppraisal() {DealId = dealId.Value};
+
             return Page();
         }
 
         /// <summary> Fires asynchronously when the page is submitted via the SAVE button. </summary>
-        public async Task<IActionResult> OnPostAsyncSave()
+        public async Task<IActionResult> OnPostAsync(CreateAppraisal createAppraisal)
         {
             //basic testing of the absolute necessities. This doesn't apply to most fields!
             if (!ModelState.IsValid)
@@ -55,24 +45,33 @@ namespace Phoenix.Pages.Units
                 return Page();
             }
 
-            _context.Attach(AppraisalData).State = EntityState.Modified;
+            var deal = _context.Deal.FirstOrDefault(x => x.Id == createAppraisal.DealId);
+            var unit = new Unit();
+            unit.Make = createAppraisal.Unit.Make;
+            unit.Model = createAppraisal.Unit.Model;
+            unit.ModelYear = createAppraisal.Unit.ModelYear;
 
-            try 
+            var appraisal = new Phoenix.Models.Appraisal();
+            appraisal.Deal = deal;
+            appraisal.Unit = unit;
+            appraisal.AppraisedBy = createAppraisal.AppraisedBy;
+
+            _context.Appraisal.Add(appraisal);
+
+            var listValues = new List<AppraisalCharacteristicValue>();
+            foreach(var c in AppraisalCharacteristics)
             {
-                await _context.SaveChangesAsync();
+                var val = Request.Form[c.AppraisalCharacteristicName];
+                listValues.Add(new AppraisalCharacteristicValue() {
+                    Appraisal = appraisal,
+                    CharacteristicName = c.AppraisalCharacteristicName,
+                    StringValue = val
+                });
             }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!_context.AppraisalExists(AppraisalData.Appraisal._id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-            //show save success message
+
+            appraisal.Values = listValues;
+
+            await _context.SaveChangesAsync();
 
             return Page();
         }
@@ -86,27 +85,7 @@ namespace Phoenix.Pages.Units
                 return Page();
             }
 
-            _context.Attach(AppraisalData).State = EntityState.Modified;
-
-            try 
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!_context.AppraisalExists(AppraisalData.Appraisal._id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-            //TODO: Send the Appraisal record to a service or the context
-            //      to attempt to finalize this Unit on this Deal
-
-            //show save success message on the target page
+            await _context.SaveChangesAsync();
 
             //return to main index???
             return RedirectToPage("../Index");

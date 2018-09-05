@@ -16,7 +16,7 @@ namespace Phoenix.Models
 
         /// <summary> Gets or sets the Deal's unique identifier. </summary>
         [Key]
-        public int _id;
+        public int Id;
 
         public DateTime? DateOfSubmission {get; set;}
 

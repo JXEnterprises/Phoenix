@@ -59,7 +59,7 @@ namespace Phoenix.Pages.Deals
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!_context.DealExists(Deal._id))
+                if (!_context.DealExists(Deal.Id))
                 {
                     return NotFound();
                 }
@@ -69,7 +69,7 @@ namespace Phoenix.Pages.Deals
                 }
             }
 
-            return RedirectToPage("./Index");
+            return RedirectToAction("Edit", new {id = newDeal.Id});
         }
     }
 }

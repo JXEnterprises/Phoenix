@@ -8,7 +8,7 @@
 <hr />
 <form method="post" class="form-horizontal">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <input type="hidden" asp-for="Deal._id" />
+    <input type="hidden" asp-for="Deal.Id" />
 
     <div class="form-group ">
         <label asp-for="Deal.DateOfSubmission" class="control-label"></label>
@@ -19,11 +19,35 @@
     </div>
 
     <div class="form-group">
-        <a class="btn btn-default" href="/Units/Create?DealId=@Model.Deal._id" role="button">Add Deal</a>
-        <input type="submit" value="Add Deal" class="btn btn-default" />
+        <input type="submit" value="Update Deal" class="btn btn-default" />
     </div>
 </form>
 
+<div>
+    <a class="btn btn-default" href="/Appraisals/Create?dealId=@Model.Deal.Id" role="button">Add Appraisal</a>
+</div>
+
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <th>Year</th>
+            <th>Make</th>
+            <th>Model</th>
+            <th></th>
+        </thead>
+        <tbody>
+            @foreach(var app in Model.Deal.Appraisals) 
+            {
+                <tr>
+                    <td>@app.Unit.ModelYear</td>
+                    <td>@app.Unit.Make</td>
+                    <td>@app.Unit.Model</td>
+                    <td>Edit</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
 
 <div>
     <a asp-page="./Index">Back to List</a>

@@ -20,19 +20,20 @@
 
     <div class="form-group ">
         <label asp-for="Deal.CustomerName" class="control-label"></label>
-        <input asp-for="Deal.CustomerName" class="form-control" />
-        <span asp-validation-for="Deal.CustomerName" class="text-danger"></span>
+        <input asp-for="CreateDeal.CustomerName" class="form-control" />
+        <span asp-validation-for="CreateDeal.CustomerName" class="text-danger"></span>
     </div>
 
     <div class="form-group ">
-        <label asp-for="Deal.DateOfSubmission" class="control-label"></label>
-        <input type="date" id="Deal_DateOfSubmission" name="Deal.DateOfSubmission" class="form-control" />
+        <label asp-for="CreateDeal.DateOfSubmission" class="control-label"></label>
+        <input type="date" id="CreateDeal_DateOfSubmission" name="CreateDeal.DateOfSubmission" class="form-control" />
     </div>
 
     <div class="form-group">
         <input type="submit" value="Add Deal" class="btn btn-default" />
     </div>
 </form>
+
 
 
 <div>

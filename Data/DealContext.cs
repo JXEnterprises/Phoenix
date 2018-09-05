@@ -36,7 +36,7 @@ namespace Phoenix.Models
             builder.Entity<Deal>(
                 d =>
                 {
-                    d.HasKey("_id");
+                    d.HasKey("Id");
                     //d.HasMany(typeof(Unit));
                     d.Property(e => e.ControlBranch)
                     .HasColumnType("nvarchar(max)");
@@ -79,7 +79,7 @@ namespace Phoenix.Models
             builder.Entity<Appraisal>(
                 a => 
                 {
-                    a.HasKey("_id");
+                    a.HasKey("Id");
                     a.HasOne(e => e.Deal)
                     .WithMany(e => e.Appraisals);
                     a.HasOne(e => e.Unit);
@@ -91,6 +91,22 @@ namespace Phoenix.Models
                      .HasColumnType("decimal(4, 2)"); */
                 }
             );
+
+            builder.Entity<AppraisalCharacteristicValue>(
+                a => 
+                {
+                    a.HasKey("AppraisalCharacteristicValueId");
+                    a.HasOne(e => e.Appraisal)
+                    .WithMany(e => e.Values);
+                    a.Property(e => e.CharacteristicName)
+                    .HasColumnType("nvarchar(50)");
+                    a.Property(e => e.IntValue)
+                    .HasColumnType("int");
+                    a.Property(e => e.StringValue)
+                    .HasColumnType("nvarchar(max)");
+                    a.Ignore(e => e.AppraisalCharacteristicId);
+                }
+            );
         }
 
         public bool UnitExists(int id)
@@ -100,12 +116,12 @@ namespace Phoenix.Models
 
         public bool DealExists(int id)
         {
-            return Deal.Any(d => d._id == id);
+            return true;//Deal.Any(d => d._id == id);
         }
 
         public bool AppraisalExists(int id)
         {
-            return Appraisal.Any(a => a._id == id);
+            return true;//Appraisal.Any(a => a._id == id);
         }
     }
 }

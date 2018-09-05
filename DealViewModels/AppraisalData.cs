@@ -40,11 +40,11 @@ namespace Phoenix.Models.DealViewModels
 
         public void PopulateListBackedFieldsForPageDisplay()
         {
-            if (Appraisal.Branch.hasOtherSelected(BranchOptions))
-            {
-                BranchOptions[BranchOptions.FindIndex(b => b.Value == "Other")].Selected = true;
-                Appraisal.BranchOther = Appraisal.Branch;
-            }
+            //if (Appraisal.Branch.hasOtherSelected(BranchOptions))
+            //{
+            //    BranchOptions[BranchOptions.FindIndex(b => b.Value == "Other")].Selected = true;
+            //    Appraisal.BranchOther = Appraisal.Branch;
+            //}
         }
 
         /// <summary> The AppraisalData constructor, which calls <see cref="PopulateListItems()"/>. </summary>

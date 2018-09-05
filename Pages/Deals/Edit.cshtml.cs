@@ -34,7 +34,7 @@ namespace Phoenix.Pages.Deals
                 return NotFound();
             }
 
-            Deal = await _context.Deal.FirstOrDefaultAsync(m => m._id == id);
+            Deal = await _context.Deal.FirstOrDefaultAsync(m => m.Id == id);
 
             if (Deal == null)
             {
@@ -60,7 +60,7 @@ namespace Phoenix.Pages.Deals
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!_context.DealExists(Deal._id))
+                if (!_context.DealExists(Deal.Id))
                 {
                     return NotFound();
                 }

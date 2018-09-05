@@ -1,39 +1,45 @@
 @page
 @* @using Phoenix.Pages.Units *@
-@model Phoenix.Pages.Units.AppraisalModel
+@model Phoenix.Pages.Appraisal.CreateModel
 @{ 
   ViewData["Title"] = "Used Truck Appraisal";
 }
 
-<div class="container-fluid">
+<div class="container body-content" style="padding-top: 50px">
   <div class="row">
    <div class="col-md-6 col-sm-6 col-xs-12">
     <form class="form-horizontal" method="post">
-      
-     <div class="form-group ">
-      <label class="control-label col-sm-2 requiredField" asp-for="@Model.AppraisalData.Appraisal.SubmissionDate"></label>
-      <div class="col-sm-10">
-       <input class="form-control" asp-for="@Model.AppraisalData.Appraisal.SubmissionDate"/>
-       <span asp-validation-for="@Model.AppraisalData.Appraisal.SubmissionDate" class="text-danger"></span>
-      </div>
-     </div>
-     <div class="form-group ">
-      <label class="control-label col-sm-2 requiredField" asp-for="@Model.AppraisalData.Appraisal.Branch"></label>
-      <div class="col-sm-10">
-        <select class="select form-congrol" asp-for="@Model.AppraisalData.Appraisal.Branch"
-                asp-items="Model.AppraisalData.BranchOptions">
-          <!-- <option value="">-- Select Branch --</option> -->
-        </select>
-       <span asp-validation-for="@Model.AppraisalData.Appraisal.SubmissionDate" class="text-danger"></span>
-      </div>
-     </div>
-     <div class="form-group hidden" id="branch-other">
-      <label class="control-label col-sm-2 requiredField" asp-for="@Model.AppraisalData.Appraisal.BranchOther"></label>
-      <div class="col-sm-10">
-       <input class="form-control" asp-for="@Model.AppraisalData.Appraisal.BranchOther"/>
-       <span asp-validation-for="@Model.AppraisalData.Appraisal.BranchOther" class="text-danger"></span>
-      </div>
-     </div>
+        <input type="hidden" name="CreateAppraisal.DealId" id="CreateAppraisal_DealId" value="@Model.CreateAppraisal.DealId"/>
+
+    <div class="form-group row">
+        <label asp-for="CreateAppraisal.AppraisedBy" class="control-label"></label>
+        <input asp-for="CreateAppraisal.AppraisedBy" class="form-control" />
+        <span asp-validation-for="CreateAppraisal.AppraisedBy" class="text-danger"></span>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="CreateAppraisal.Unit.ModelYear" class="control-label"></label>
+        <input asp-for="CreateAppraisal.Unit.ModelYear" class="form-control" />
+        <span asp-validation-for="CreateAppraisal.Unit.ModelYear" class="text-danger"></span>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="CreateAppraisal.Unit.Make" class="control-label"></label>
+        <input asp-for="CreateAppraisal.Unit.Make" class="form-control" />
+        <span asp-validation-for="CreateAppraisal.Unit.Make" class="text-danger"></span>
+    </div>
+    <div class="form-group row">
+        <label asp-for="CreateAppraisal.Unit.Model" class="control-label"></label>
+        <input asp-for="CreateAppraisal.Unit.Model" class="form-control" />
+        <span asp-validation-for="CreateAppraisal.Unit.Model" class="text-danger"></span>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="CreateAppraisal.Unit.VIN" class="control-label"></label>
+        <input asp-for="CreateAppraisal.Unit.VIN" class="form-control" />
+        <span asp-validation-for="CreateAppraisal.Unit.VIN" class="text-danger"></span>
+    </div>
+
 
     @foreach(var item in Model.AppraisalCharacteristics) {
         <div class="form-group row">
@@ -60,7 +66,7 @@
                         <div class="radio">
                             <label>
                                 <input type="radio" name="@item.AppraisalCharacteristicName" 
-                                    id="@item.AppraisalCharacteristicName" value="@opt.ListValueId">
+                                    id="@item.AppraisalCharacteristicName" value="@opt.ListValueName">
                                 @opt.ListValueName
                             </label>
                         </div>
@@ -76,11 +82,6 @@
       <div class="col-sm-4 col-sm-offset-2">
        <button class="btn btn-primary " type="submit" asp-page-handler="Save">
         Save
-       </button>
-      </div>
-	  <div class="col-sm-4">
-       <button class="btn btn-danger" type="submit" asp-page-handler="Finish">
-        Finish
        </button>
       </div>
      </div>

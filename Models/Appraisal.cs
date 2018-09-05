@@ -9,25 +9,23 @@ namespace Phoenix.Models
     {
         /// <summary> Gets or sets the Appraisal's unique identifier. </summary>
         [Key]
-        public int _id;
-        /// <summary> Gets or sets the <see cref="Appraisal"/> submission date. </summary>
-        [Display(Name="Submission Date")]
-        [Required(ErrorMessage="Submission Date is Required")]
-        [DataType(DataType.Date, ErrorMessage="Invalid Date Format")]
-        [Range(typeof(DateTime),"1970-01-01","2030-01-01",
-            ErrorMessage="Value for {0} must be between {1} and {2}")]
-        public DateTime SubmissionDate { get; set; }
+        //public int _id;
+        public int Id;
+
         /// <summary> Gets or sets the <see cref="Appraisal"/> branch. </summary>
-        [Required]
-        public string Branch { get; set; }
+        //[Required]
+        //public string Branch { get; set; }
         /// <summary> Gets or sets the <see cref="Appraisal"/> user-input branch. </summary>
-        [MaxLength(32, ErrorMessage="Branch name must be less than 32 characters")]
-        public string BranchOther { get; set; }
+        //[MaxLength(32, ErrorMessage="Branch name must be less than 32 characters")]
+        //public string BranchOther { get; set; }
+
         public Deal Deal {get;set;}
 
         public Unit Unit {get;set;}
 
         public string AppraisedBy {get; set;}
+
+        public List<AppraisalCharacteristicValue> Values { get; set;}
 
         /*public string CustomerName { get; set; }
         public string CustomerAddress { get; set; }
@@ -195,8 +193,11 @@ namespace Phoenix.Models
     public class AppraisalCharacteristicValue
     {
         public int AppraisalCharacteristicValueId {get;set;}
+        public Appraisal Appraisal {get;set;}
         public int AppraisalId {get;set;}
+
         public int AppraisalCharacteristicId {get;set;}
+        public string CharacteristicName {get;set;}
         public int IntValue {get;set;}
         public string StringValue {get;set;}
     }
