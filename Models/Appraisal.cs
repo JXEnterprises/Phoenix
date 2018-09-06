@@ -10,7 +10,7 @@ namespace Phoenix.Models
         /// <summary> Gets or sets the Appraisal's unique identifier. </summary>
         [Key]
         //public int _id;
-        public int Id;
+        public int Id {get;set;}
 
         /// <summary> Gets or sets the <see cref="Appraisal"/> branch. </summary>
         //[Required]
@@ -182,6 +182,8 @@ namespace Phoenix.Models
         public string AppraisalCharacteristicType {get;set;}
 
         public List<AppraisalCharacteristicListValue> ListValues {get;set;}
+
+        public string SelectedValue {get; set;}
     }
 
     public class AppraisalCharacteristicListValue 

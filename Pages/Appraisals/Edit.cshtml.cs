@@ -36,11 +36,21 @@ namespace Phoenix.Pages.Appraisal
             .Include(x => x.Unit)
             .FirstOrDefault(x => x.Id == appraisalId);
 
+            var listValues = _context.AppraisalCharacteristicValue.Where(x => x.Appraisal.Id == appraisalId);
+            foreach(var c in this.AppraisalCharacteristics)
+            {
+                var mval = listValues.FirstOrDefault(x => x.CharacteristicName == c.AppraisalCharacteristicName);
+                if (mval != null)
+                {
+                    c.SelectedValue = mval.StringValue;
+                }
+            }
+
             return Page();
         }
 
         /// <summary> Fires asynchronously when the page is submitted via the SAVE button. </summary>
-        public async Task<IActionResult> OnPostAsync(CreateAppraisal createAppraisal)
+        public async Task<IActionResult> OnPostAsync(Phoenix.Models.Appraisal editAppraisal)
         {
             //basic testing of the absolute necessities. This doesn't apply to most fields!
             if (!ModelState.IsValid)
@@ -48,34 +58,40 @@ namespace Phoenix.Pages.Appraisal
                 return Page();
             }
 
-            var deal = _context.Deal.FirstOrDefault(x => x.Id == createAppraisal.DealId);
-            var unit = new Unit();
-            unit.Make = createAppraisal.Unit.Make;
-            unit.Model = createAppraisal.Unit.Model;
-            unit.ModelYear = createAppraisal.Unit.ModelYear;
+            var appraisal = _context.Appraisal
+            .Include(x => x.Unit)  
+            .Include(x => x.Values)
+            .FirstOrDefault(x => x.Id == editAppraisal.Id);
+            appraisal.Unit.Make = editAppraisal.Unit.Make;
+            appraisal.Unit.Model = editAppraisal.Unit.Model;
+            appraisal.Unit.ModelYear = editAppraisal.Unit.ModelYear;
 
-            var appraisal = new Phoenix.Models.Appraisal();
-            appraisal.Deal = deal;
-            appraisal.Unit = unit;
-            appraisal.AppraisedBy = createAppraisal.AppraisedBy;
+            appraisal.AppraisedBy = editAppraisal.AppraisedBy;
 
-            _context.Appraisal.Add(appraisal);
-
-            var listValues = new List<AppraisalCharacteristicValue>();
             foreach(var c in AppraisalCharacteristics)
             {
                 var val = Request.Form[c.AppraisalCharacteristicName];
-                listValues.Add(new AppraisalCharacteristicValue() {
-                    Appraisal = appraisal,
-                    CharacteristicName = c.AppraisalCharacteristicName,
-                    StringValue = val
-                });
+                var aVal = appraisal.Values.FirstOrDefault(x => x.CharacteristicName == c.AppraisalCharacteristicName);
+                if (aVal != null )
+                {
+                    aVal.StringValue = val;
+                }
             }
 
-            appraisal.Values = listValues;
-
+            _context.Update(appraisal);
+            
             await _context.SaveChangesAsync();
 
+            foreach(var c in this.AppraisalCharacteristics)
+            {
+                var mval = appraisal.Values.FirstOrDefault(x => x.CharacteristicName == c.AppraisalCharacteristicName);
+                if (mval != null)
+                {
+                    c.SelectedValue = mval.StringValue;
+                }
+            }
+            EditAppraisal = appraisal;
+    
             return Page();
         }
 
@@ -93,8 +109,8 @@ namespace Phoenix.Pages.Appraisal
             //return to main index???
             return RedirectToPage("../Index");
         }
-        public List<AppraisalCharacteristic> AppraisalCharacteristics { get {
-            return new List<AppraisalCharacteristic>() {
+
+        private List<AppraisalCharacteristic> _lst = new List<AppraisalCharacteristic>() {
                     new AppraisalCharacteristic { AppraisalCharacteristicName = "Sleeper", AppraisalCharacteristicType = "YesNo"},
                     new AppraisalCharacteristic { AppraisalCharacteristicName = "Sleeper Configuration", AppraisalCharacteristicType = "List", 
                     ListValues = new List<AppraisalCharacteristicListValue>() {
@@ -119,9 +135,9 @@ namespace Phoenix.Pages.Appraisal
                     new AppraisalCharacteristic { AppraisalCharacteristicName = "Engine Liters"},
                     new AppraisalCharacteristic { AppraisalCharacteristicName = "Transmission"},
                 };
-            }
+        public List<AppraisalCharacteristic> AppraisalCharacteristics { 
+            get { return _lst; } 
+            set { _lst = value;}
         }
-
-
     }
 }

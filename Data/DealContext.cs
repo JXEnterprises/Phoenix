@@ -30,6 +30,8 @@ namespace Phoenix.Models
         /// Used to query and save instances of AppraisalData. </summary>
         public DbSet<Appraisal> Appraisal {get; set; }
 
+        public DbSet<AppraisalCharacteristicValue> AppraisalCharacteristicValue {get; set; }
+
         /// <summary> Used to furthered configure the discovered model. </summary>
         protected override void OnModelCreating(ModelBuilder builder)
         {

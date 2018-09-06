@@ -9,7 +9,7 @@
   <div class="row">
    <div class="col-md-6 col-sm-6 col-xs-12">
     <form class="form-horizontal" method="post">
-        <input type="hidden" name="EditAppraisal.Deal.Id" id="EditAppraisal_Deal_Id" value="@Model.EditAppraisal.Deal.Id"/>
+        <input type="hidden" name="EditAppraisal.Id" id="EditAppraisal_Id" value="@Model.EditAppraisal.Id"/>
 
     <div class="form-group row">
         <label asp-for="EditAppraisal.AppraisedBy" class="control-label"></label>
@@ -50,13 +50,15 @@
             {
                 <div class="radio">
                     <label>
-                    <input type="radio" name="@item.AppraisalCharacteristicName" id="@item.AppraisalCharacteristicName" value="Yes">
+                    <input type="radio" name="@item.AppraisalCharacteristicName" id="@item.AppraisalCharacteristicName"
+                     value="Yes" @(item.SelectedValue == "Yes" ? "checked" : "")>
                         Yes 
                     </label>
                 </div>
                 <div class="radio">
                     <label>
-                    <input type="radio" name="@item.AppraisalCharacteristicName" id="@item.AppraisalCharacteristicName" value="No">
+                    <input type="radio" name="@item.AppraisalCharacteristicName" id="@item.AppraisalCharacteristicName" 
+                        value="No" @(item.SelectedValue == "No" ? "checked" : "")>
                         No
                     </label>
                 </div>
@@ -66,7 +68,7 @@
                         <div class="radio">
                             <label>
                                 <input type="radio" name="@item.AppraisalCharacteristicName" 
-                                    id="@item.AppraisalCharacteristicName" value="@opt.ListValueName">
+                                    id="@item.AppraisalCharacteristicName" value="@opt.ListValueName" @(item.SelectedValue == opt.ListValueName ? "checked" : "") >
                                 @opt.ListValueName
                             </label>
                         </div>
