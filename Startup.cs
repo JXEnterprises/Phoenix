@@ -13,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using Phoenix.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authentication.Google;
+using Newtonsoft.Json.Serialization;
 
 namespace Phoenix
 {
@@ -55,6 +56,12 @@ namespace Phoenix
 
             services.AddDbContext<DealContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("DealContext")));
+            services
+                .AddMvc()
+                .AddJsonOptions(options =>
+                    options.SerializerSettings.ContractResolver = new DefaultContractResolver());
+
+            services.AddKendo();
         }
 
         /// <summary> This method gets called by the runtime. Use this method to configure the HTTP request pipeline. </summary>
@@ -73,6 +80,7 @@ namespace Phoenix
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+            app.UseKendo(env);
 
             //TODO: ADD THIS after we get the Appraisal form working
             app.UseAuthentication()
